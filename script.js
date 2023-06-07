@@ -174,7 +174,7 @@ async function main() {
     }
 
     const json = JSON.stringify(poolData, null, 2);
-    fs.writeFileSync('datas2.json', json, 'utf8');
+    fs.writeFileSync('data.json', json, 'utf8');
     console.log("Data has been written to data.json");
 }
 
