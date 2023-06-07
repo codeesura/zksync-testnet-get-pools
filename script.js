@@ -24,38 +24,41 @@ const factory_contract_mute_interface = new ethers.Contract(factory_contract_mut
 const factory_contract_syncswap_interface = new ethers.Contract(factory_contract_syncswap, factory_abi_syncswap, provider);
 
 async function main() {
-    const blockNumber = 7095541;
     let poolData = [];
 
     for (let i=0 ; i < liste.length ; i++) {
         const eleman = liste[i];
 
-        const getir_mute = await factory_contract_mute_interface.getPair(WETH_MUTEIO,eleman,0,{ blockTag: blockNumber });
-        const reserves_mute_contract = new ethers.Contract(getir_mute, pool_abi_muteio, provider);
-        const reserves_mute = await reserves_mute_contract.getReserves({ blockTag: blockNumber });
+        const getir_mute = await factory_contract_mute_interface.getPair(WETH_MUTEIO,eleman,false);
+        if (getir_mute == "0x0000000000000000000000000000000000000000") {
+            continue;
+        };
 
-        const reserves_0_contract_mute = await reserves_mute_contract.token0({ blockTag: blockNumber });
+        const reserves_mute_contract = new ethers.Contract(getir_mute, pool_abi_muteio, provider);
+        const reserves_mute = await reserves_mute_contract.getReserves();
+
+        const reserves_0_contract_mute = await reserves_mute_contract.token0();
         const reserves_0_contract_mute_instance = new ethers.Contract(reserves_0_contract_mute, ERC20_abi, provider);
-        const reserve_0_decimal_calculate_mute = await reserves_0_contract_mute_instance.decimals({ blockTag: blockNumber });
+        const reserve_0_decimal_calculate_mute = await reserves_0_contract_mute_instance.decimals();
         const reserves_0_info_mute = {
-            name: await reserves_0_contract_mute_instance.name({ blockTag: blockNumber }),
-            symbol: await reserves_0_contract_mute_instance.symbol({ blockTag: blockNumber }),
+            name: await reserves_0_contract_mute_instance.name(),
+            symbol: await reserves_0_contract_mute_instance.symbol(),
             decimal: reserve_0_decimal_calculate_mute,
             reserve: (reserves_mute[0] / (10**reserve_0_decimal_calculate_mute)).toString()
         };
 
-        const reserves_1_contract_mute = await reserves_mute_contract.token1({ blockTag: blockNumber });
+        const reserves_1_contract_mute = await reserves_mute_contract.token1();
         const reserves_1_contract_mute_instance = new ethers.Contract(reserves_1_contract_mute, ERC20_abi, provider);
-        const reserve_1_decimal_calculate_mute = await reserves_1_contract_mute_instance.decimals({ blockTag: blockNumber })
+        const reserve_1_decimal_calculate_mute = await reserves_1_contract_mute_instance.decimals()
         const reserves_1_info_mute = {
-            name: await reserves_1_contract_mute_instance.name({ blockTag: blockNumber }),
-            symbol: await reserves_1_contract_mute_instance.symbol({ blockTag: blockNumber }),
+            name: await reserves_1_contract_mute_instance.name(),
+            symbol: await reserves_1_contract_mute_instance.symbol(),
             decimal: reserve_1_decimal_calculate_mute,
             reserve: (reserves_mute[1] / (10**reserve_1_decimal_calculate_mute)).toString()
         };
 
-        let base_token_price_quote_token = reserves_1_info_mute.reserve / reserves_0_info_mute.reserve;
-        let quote_token_price_base_token = 1 / base_token_price_quote_token;
+        let quote_token_price_base_token = reserves_1_info_mute.reserve / reserves_0_info_mute.reserve;
+        let base_token_price_quote_token = 1 / quote_token_price_base_token;
 
         const mute_pool = {
             data: {
@@ -63,7 +66,7 @@ async function main() {
                 type: "pool",
                 attributes: {
                     address: getir_mute,
-                    name: `${reserves_0_info_mute.symbol} / ${reserves_1_info_mute.symbol}`,
+                    name: `${reserves_1_info_mute.symbol} / ${reserves_0_info_mute.symbol}`,
                     base_token_price_quote_token: base_token_price_quote_token,
                     quote_token_price_base_token: quote_token_price_base_token,
                     swap_fee: "0.3"
@@ -77,19 +80,19 @@ async function main() {
                     },
                     base_token: {
                         data: {
-                            symbol: reserves_0_info_mute.symbol,
-                            reserves: parseFloat(reserves_0_info_mute.reserve),
-                            contract_address: reserves_0_contract_mute,
-                            decimals: reserves_0_info_mute.decimal,
+                            symbol: reserves_1_info_mute.symbol,
+                            reserves: parseFloat(reserves_1_info_mute.reserve),
+                            contract_address: reserves_1_contract_mute,
+                            decimals: reserves_1_info_mute.decimal,
                             type: "token"
                         }
                     },
                     quote_token: {
                         data: {
-                            symbol: reserves_1_info_mute.symbol,
-                            reserves: parseFloat(reserves_1_info_mute.reserve),
-                            contract_address: reserves_1_contract_mute,
-                            decimals: reserves_1_info_mute.decimal,
+                            symbol: reserves_0_info_mute.symbol,
+                            reserves: parseFloat(reserves_0_info_mute.reserve),
+                            contract_address: reserves_0_contract_mute,
+                            decimals: reserves_0_info_mute.decimal,
                             type: "token"
                         }
                     }
@@ -98,32 +101,35 @@ async function main() {
         };
         poolData.push(mute_pool);
 
-        const getir_syncswap = await factory_contract_syncswap_interface.getPool(WETH_SYNCSWAP,eleman,{ blockTag: blockNumber });
+        const getir_syncswap = await factory_contract_syncswap_interface.getPool(WETH_SYNCSWAP,eleman,);
+        if (getir_syncswap == "0x0000000000000000000000000000000000000000") {
+            continue;
+        };
         const reserves_syncswap_contract = new ethers.Contract(getir_syncswap, pool_abi_syncswap, provider);
-        const reserves_syncswap = await reserves_syncswap_contract.getReserves({ blockTag: blockNumber });
+        const reserves_syncswap = await reserves_syncswap_contract.getReserves();
 
-        const reserves_0_contract_sync = await reserves_syncswap_contract.token0({ blockTag: blockNumber });
+        const reserves_0_contract_sync = await reserves_syncswap_contract.token0();
         const reserves_0_contract_sync_instance = new ethers.Contract(reserves_0_contract_sync, ERC20_abi, provider);
-        const reserve_0_decimal_calculate_syncswap = await reserves_0_contract_sync_instance.decimals({ blockTag: blockNumber });
+        const reserve_0_decimal_calculate_syncswap = await reserves_0_contract_sync_instance.decimals();
         const reserves_0_info_sync = {
-            name: await reserves_0_contract_sync_instance.name({ blockTag: blockNumber }),
-            symbol: await reserves_0_contract_sync_instance.symbol({ blockTag: blockNumber }),
+            name: await reserves_0_contract_sync_instance.name(),
+            symbol: await reserves_0_contract_sync_instance.symbol(),
             decimal: reserve_0_decimal_calculate_syncswap,
             reserve: (reserves_syncswap[0] / (10**reserve_0_decimal_calculate_syncswap)).toString()
         };
 
-        const reserves_1_contract_sync = await reserves_syncswap_contract.token1({ blockTag: blockNumber });
+        const reserves_1_contract_sync = await reserves_syncswap_contract.token1();
         const reserves_1_contract_sync_instance = new ethers.Contract(reserves_1_contract_sync, ERC20_abi, provider);
-        const reserve_1_decimal_calculate_syncswap = await reserves_1_contract_sync_instance.decimals({ blockTag: blockNumber });
+        const reserve_1_decimal_calculate_syncswap = await reserves_1_contract_sync_instance.decimals();
         const reserves_1_info_sync = {
-            name: await reserves_1_contract_sync_instance.name({ blockTag: blockNumber }),
-            symbol: await reserves_1_contract_sync_instance.symbol({ blockTag: blockNumber }),
+            name: await reserves_1_contract_sync_instance.name(),
+            symbol: await reserves_1_contract_sync_instance.symbol(),
             decimal: reserve_1_decimal_calculate_syncswap,
             reserve: (reserves_syncswap[1] / (10**reserve_1_decimal_calculate_syncswap)).toString()
         };
 
-        let base_token_price_quote_token_sync = reserves_1_info_sync.reserve / reserves_0_info_sync.reserve;
-        let quote_token_price_base_token_sync = 1 / base_token_price_quote_token_sync;
+        let quote_token_price_base_token_sync = reserves_1_info_sync.reserve / reserves_0_info_sync.reserve;
+        let base_token_price_quote_token_sync = 1 / quote_token_price_base_token_sync;
 
         const syncswap_pool = {
             data: {
@@ -131,7 +137,7 @@ async function main() {
                 type: "pool",
                 attributes: {
                     address: getir_syncswap,
-                    name: `${reserves_0_info_sync.symbol} / ${reserves_1_info_sync.symbol}`,
+                    name: `${reserves_1_info_sync.symbol} / ${reserves_0_info_sync.symbol}`,
                     base_token_price_quote_token: base_token_price_quote_token_sync,
                     quote_token_price_base_token: quote_token_price_base_token_sync,
                     swap_fee: "0.3"
@@ -145,19 +151,19 @@ async function main() {
                     },
                     base_token: {
                         data: {
-                            symbol: reserves_0_info_sync.symbol,
-                            reserves: parseFloat(reserves_0_info_sync.reserve),
-                            contract_address: reserves_0_contract_sync,
-                            decimals: reserves_0_info_sync.decimal,
+                            symbol: reserves_1_info_sync.symbol,
+                            reserves: parseFloat(reserves_1_info_sync.reserve),
+                            contract_address: reserves_1_contract_sync,
+                            decimals: reserves_1_info_sync.decimal,
                             type: "token"
                         }
                     },
                     quote_token: {
                         data: {
-                            symbol: reserves_1_info_sync.symbol,
-                            reserves: parseFloat(reserves_1_info_sync.reserve),
-                            contract_address: reserves_1_contract_sync,
-                            decimals: reserves_1_info_sync.decimal,
+                            symbol: reserves_0_info_sync.symbol,
+                            reserves: parseFloat(reserves_0_info_sync.reserve),
+                            contract_address: reserves_0_contract_sync,
+                            decimals: reserves_0_info_sync.decimal,
                             type: "token"
                         }
                     }
@@ -168,7 +174,7 @@ async function main() {
     }
 
     const json = JSON.stringify(poolData, null, 2);
-    fs.writeFileSync('data.json', json, 'utf8');
+    fs.writeFileSync('datas2.json', json, 'utf8');
     console.log("Data has been written to data.json");
 }
 
