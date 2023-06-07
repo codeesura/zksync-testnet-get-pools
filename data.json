@@ -1,1 +1,314 @@
-
+[
+  {
+    "data": {
+      "id": "muteio-0xbca60857Fc537Ccfda17338fA7Ed9dcF6CdEB973",
+      "type": "pool",
+      "attributes": {
+        "address": "0xbca60857Fc537Ccfda17338fA7Ed9dcF6CdEB973",
+        "name": "USDC / WETH",
+        "base_token_price_quote_token": 1.2134614199557473e-31,
+        "quote_token_price_base_token": 8.240888284989466e+30,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "muteio",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "USDC",
+            "reserves": 7.174298530674842e+28,
+            "contract_address": "0x0faF6df7054946141266420b43783387A78d82A9",
+            "decimals": 6,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 0.008705734482219125,
+            "contract_address": "0x294cB514815CAEd9557e6bAA2947d6Cf0733f014",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "syncswap-0xcFA3d5C02D827c0d1A48B4241700AEBF751458FA",
+      "type": "pool",
+      "attributes": {
+        "address": "0xcFA3d5C02D827c0d1A48B4241700AEBF751458FA",
+        "name": "USDC / WETH",
+        "base_token_price_quote_token": 1.5707768426936926e-30,
+        "quote_token_price_base_token": 6.366276690743165e+29,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "syncswap",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "USDC",
+            "reserves": 3.402823668030753e+32,
+            "contract_address": "0x0faF6df7054946141266420b43783387A78d82A9",
+            "decimals": 6,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 534.5076617512716,
+            "contract_address": "0x20b28B1e4665FFf290650586ad76E977EAb90c5D",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "muteio-0xcDa050a0E731625654EAc8a790BE36356c1E5F7e",
+      "type": "pool",
+      "attributes": {
+        "address": "0xcDa050a0E731625654EAc8a790BE36356c1E5F7e",
+        "name": "WETH / DAI",
+        "base_token_price_quote_token": 107716.24301025299,
+        "quote_token_price_base_token": 0.000009283650933729789,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "muteio",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 0.7137727235763092,
+            "contract_address": "0x294cB514815CAEd9557e6bAA2947d6Cf0733f014",
+            "decimals": 18,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "DAI",
+            "reserves": 76884.91614683585,
+            "contract_address": "0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "syncswap-0xe52940eDDa6ec5FDabef7C33B9C1E1d613BbA144",
+      "type": "pool",
+      "attributes": {
+        "address": "0xe52940eDDa6ec5FDabef7C33B9C1E1d613BbA144",
+        "name": "WETH / DAI",
+        "base_token_price_quote_token": 7321465086346726000,
+        "quote_token_price_base_token": 1.3658468465073037e-19,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "syncswap",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 46.47735961801947,
+            "contract_address": "0x20b28B1e4665FFf290650586ad76E977EAb90c5D",
+            "decimals": 18,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "DAI",
+            "reserves": 340282365748910750000,
+            "contract_address": "0x3e7676937A7E96CFB7616f255b9AD9FF47363D4b",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "muteio-0xbB9b1ff391d0968247080E3431A43AACcB29D513",
+      "type": "pool",
+      "attributes": {
+        "address": "0xbB9b1ff391d0968247080E3431A43AACcB29D513",
+        "name": "WETH / LINK",
+        "base_token_price_quote_token": 239004954449917.88,
+        "quote_token_price_base_token": 4.184013684157934e-15,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "muteio",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 3.592833863996803,
+            "contract_address": "0x294cB514815CAEd9557e6bAA2947d6Cf0733f014",
+            "decimals": 18,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "LINK",
+            "reserves": 858705094010678.4,
+            "contract_address": "0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "syncswap-0x161D95f34c8C5970479AC749fBc1CE4c947cF6CB",
+      "type": "pool",
+      "attributes": {
+        "address": "0x161D95f34c8C5970479AC749fBc1CE4c947cF6CB",
+        "name": "WETH / LINK",
+        "base_token_price_quote_token": 38141634783671300000,
+        "quote_token_price_base_token": 2.6218068671458914e-20,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "syncswap",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 8.921521673026495,
+            "contract_address": "0x20b28B1e4665FFf290650586ad76E977EAb90c5D",
+            "decimals": 18,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "LINK",
+            "reserves": 340281421367184700000,
+            "contract_address": "0x40609141Db628BeEE3BfAB8034Fc2D8278D0Cc78",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "muteio-0xef9064a5968C8141EeDB3FDF1A0b5F20d3446108",
+      "type": "pool",
+      "attributes": {
+        "address": "0xef9064a5968C8141EeDB3FDF1A0b5F20d3446108",
+        "name": "wBTC / WETH",
+        "base_token_price_quote_token": 5.7333558590122774e-18,
+        "quote_token_price_base_token": 174417919381037100,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "muteio",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "wBTC",
+            "reserves": 58471287714168850,
+            "contract_address": "0x0BfcE1D53451B4a8175DD94e6e029F7d8a701e9c",
+            "decimals": 8,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 0.33523670000002254,
+            "contract_address": "0x294cB514815CAEd9557e6bAA2947d6Cf0733f014",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  },
+  {
+    "data": {
+      "id": "syncswap-0xed447056e8Ea19D63ba53C41d4CCd5335e21c9e0",
+      "type": "pool",
+      "attributes": {
+        "address": "0xed447056e8Ea19D63ba53C41d4CCd5335e21c9e0",
+        "name": "wBTC / WETH",
+        "base_token_price_quote_token": 1.44470688308307e-29,
+        "quote_token_price_base_token": 6.921819309574788e+28,
+        "swap_fee": "0.3"
+      },
+      "relationships": {
+        "dex": {
+          "data": {
+            "id": "syncswap",
+            "type": "dex"
+          }
+        },
+        "base_token": {
+          "data": {
+            "symbol": "wBTC",
+            "reserves": 3.402823668050178e+30,
+            "contract_address": "0x0BfcE1D53451B4a8175DD94e6e029F7d8a701e9c",
+            "decimals": 8,
+            "type": "token"
+          }
+        },
+        "quote_token": {
+          "data": {
+            "symbol": "WETH",
+            "reserves": 49.160827751500726,
+            "contract_address": "0x20b28B1e4665FFf290650586ad76E977EAb90c5D",
+            "decimals": 18,
+            "type": "token"
+          }
+        }
+      }
+    }
+  }
+]
